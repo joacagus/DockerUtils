@@ -1,4 +1,6 @@
+
 version: '3.8'
+
 
 services:
     web:
@@ -7,5 +9,6 @@ services:
             - "8080:80"
         volumes: 
             - ./nginx:/usr/share/nginx/html
+
 
        
