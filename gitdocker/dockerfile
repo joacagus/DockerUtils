@@ -1,7 +1,9 @@
 FROM python:3.9-slim
-
-WORKDIR /usr/src/app
+#Tratamos de instalar nuestro requerimientos
+WORKDIR /usr/src/app 
+# Copiamos nuestros archivos de python
 COPY ./app/ /usr/src/app/
+#Tratamos de instalar nuestro requerimientos
 RUN pip install --upgrade pip
 COPY ./app/requirements.txt /usr/src/app/requirements.txt
 RUN pip install -r requirements.txt

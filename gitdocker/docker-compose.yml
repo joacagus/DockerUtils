@@ -1,10 +1,10 @@
 version: '3.8'
 services:
-    Redis:
+    Redis: #Servidor de cache? no tengo ni idea de como integrarlo con el resto
         image: redis:6
         ports:
             - "6379:6379"
-    web: 
+    web: #Nuestro servidor web principal. Supuestamente desde aqui con el python podemos integrar todos los servicios
         volumes: 
             - ./app:/usr/src/app
         ports:
@@ -12,7 +12,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
-        command: gunicorn --bind 0.0.0.0:5000 app:app 
+        command: gunicorn --bind 0.0.0.0:5000 app:app #Por que funciona desde aqui y no el dockerfile? no se
         depends_on:
         - Redis 
         - db
@@ -20,7 +20,7 @@ services:
 
 
 
-    db:
+    db: #Servidor base de datos. Parece bastante funcional. aunque ahora mismo no hace nada
         image: postgres
         restart: always
         environment:
@@ -31,12 +31,12 @@ services:
             - "5432:5432"
         volumes: 
             - ./data:/var/lib/postgresql/data
-    nginx:
+    nginx: #Servidor de nginx. como se integra esto con el servidor de python? no se! que esta supuesto que haga? lo mismo, no se!
         image: nginx
         ports:
             - "80:80"
         volumes: 
-            - ./nginx.conf:/etc/nginx/nginx.conf
+            - ./nginx.conf:/etc/nginx/nginx.conf #Esto es sunficiente para integrar el contenedor 
         depends_on:
             - web
 
