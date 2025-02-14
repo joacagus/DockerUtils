@@ -12,6 +12,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
+        command: gunicorn --bind 0.0.0.0:5000 app:app 
         depends_on:
         - Redis 
 
@@ -27,6 +28,8 @@ services:
             - POSTGRES_DB= mydatabase
         ports:
             - "5432:5432"
+        volumes: 
+            - ./data:/var/lib/postgresql/data
     nginx:
         image: nginx
         ports:
