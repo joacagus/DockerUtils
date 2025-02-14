@@ -3,15 +3,19 @@ services:
     Redis:
         image: redis:6
         ports:
-            - "6379:80"
+            - "6379:6379"
     web: 
-        image: python:3.9-slim
         volumes: 
             - ./app:/usr/src/app
         ports:
             - "5000:5000"
-        depends_on:
-            - Redis
+        build:
+            context: .
+            dockerfile: Dockerfile
+    ports:
+      - "2000:2000"
+    depends_on:
+            - Redis 
 
     db:
         image: postgres
@@ -26,7 +30,8 @@ services:
         image: nginx
         ports:
             - "80:80"
-        
+        volumes: 
+            - ./nginx.conf:/etc/nginx/nginx.conf
         depends_on:
             - web
 
