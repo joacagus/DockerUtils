@@ -1,5 +1,11 @@
-FROM nginx:1.16-alpine
-RUN  apk -U upgrade && apk add nano && apk add vim && apk add bash  && apk add curl && apk add htop
-EXPOSE 80
-CMD [ "nginx", "-g", "daemon off;" ]
+FROM python:3.9-slim
 
+WORKDIR /usr/src/app
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+EXPOSE 5000
+
+CMD [ "python", "./your-daemon-or-script.py" ]
