@@ -3,4 +3,4 @@ volumeTest/index.html
 volumeTest/static/index.html
 volumeTest/v2/index.html
 DockerFile/dockerfile
-data
+/gitdocker/data/*
