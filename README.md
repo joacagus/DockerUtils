@@ -6,3 +6,5 @@ Referencia para ejercicio de docker (python, nginx, postgres):
   -https://testdriven.io/blog/dockerizing-flask-with-postgres-gunicorn-and-nginx/
   
   -https://hub.docker.com/_/python
+
+  -https://docs.docker.com/compose/gettingstarted/
